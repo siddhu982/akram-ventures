@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_thesis_bottom_slider_headings",
+  "info": {
+    "displayName": "bottomSliderHeading",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sliderImg1": {
+      "type": "component",
+      "component": "thesis.slider-img",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

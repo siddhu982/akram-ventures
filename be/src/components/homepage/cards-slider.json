@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_homepage_cards_sliders",
+  "info": {
+    "displayName": "cardsSlider",
+    "icon": "cup"
+  },
+  "options": {},
+  "attributes": {
+    "partnerLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

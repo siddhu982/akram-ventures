@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_teams_designations",
+  "info": {
+    "displayName": "Designation",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "designation": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

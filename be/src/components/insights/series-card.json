@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_insights_series_cards",
+  "info": {
+    "displayName": "Series Card",
+    "icon": "layer",
+    "description": "A series card — orange title, description, read more link (e.g. Slingshot, Future View)"
+  },
+  "options": {},
+  "attributes": {
+    "seriesTitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "readMoreUrl": {
+      "type": "string"
+    }
+  }
+}

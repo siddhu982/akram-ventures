@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+  <title id="title">NovaTech logo</title>
+  <desc id="desc">A violet and blue technology logo with a connected orbital mark.</desc>
+  <defs>
+    <linearGradient id="nova-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5B5CE2"/>
+      <stop offset="1" stop-color="#189DFF"/>
+    </linearGradient>
+    <linearGradient id="nova-orbit" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#7446ED"/>
+      <stop offset="1" stop-color="#64D5FF"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(24 24)">
+    <path d="M66 0 123 33v66l-57 33L9 99V33L66 0Z" fill="url(#nova-gradient)"/>
+    <path d="M32 92c8-31 33-51 66-51 17 0 32 5 45 15" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="8"/>
+    <path d="M24 63c17 8 32 12 45 12 22 0 41-9 61-29" fill="none" stroke="url(#nova-orbit)" stroke-linecap="round" stroke-width="8"/>
+    <circle cx="32" cy="92" r="8" fill="#fff"/>
+    <circle cx="143" cy="56" r="8" fill="#DDF6FF"/>
+    <circle cx="69" cy="75" r="10" fill="#fff"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" letter-spacing="-1.5">
+    <text x="182" y="105" fill="#172554" font-size="64" font-weight="700">Nova</text>
+    <text x="348" y="105" fill="#5B5CE2" font-size="64" font-weight="700">Tech</text>
+  </g>
+  <text x="186" y="135" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="3.1">INTELLIGENT SYSTEMS</text>
+</svg>

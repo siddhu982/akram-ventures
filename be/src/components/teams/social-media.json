@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_teams_social_medias",
+  "info": {
+    "displayName": "SocialMedia"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "string"
+    },
+    "SocialMediaImages": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "ProfileUri": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

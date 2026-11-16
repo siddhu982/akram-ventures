@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_sections",
+  "info": {
+    "singularName": "about-section",
+    "pluralName": "about-sections",
+    "displayName": "About Section"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Arkam"
+    },
+    "description1": {
+      "type": "text",
+      "default": "Sanskrit word meaning \"all the way to the sun\" or limitless expanse."
+    },
+    "description2": {
+      "type": "text",
+      "default": "Arkam partners with limitless founders innovating to build a new India."
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

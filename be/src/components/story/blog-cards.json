@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_story_blog_card_groups",
+  "info": {
+    "displayName": "blogCards",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "card": {
+      "type": "component",
+      "component": "story.blog-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

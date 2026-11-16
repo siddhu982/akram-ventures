@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_shared_section_appearances",
+  "info": {
+    "displayName": "SectionAppearance",
+    "icon": "paint-brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "headingArtwork": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gradientImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "backgroundMode": {
+      "type": "enumeration",
+      "enum": [
+        "plain",
+        "gradient",
+        "plain-with-gradient"
+      ]
+    }
+  }
+}

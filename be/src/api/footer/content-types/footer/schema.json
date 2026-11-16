@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ctaHeading": {
+      "type": "string",
+      "default": "Calling Limitless entrepreneurs"
+    },
+    "ctaButtonText": {
+      "type": "string",
+      "default": "Pitch to us"
+    },
+    "ctaButtonUrl": {
+      "type": "string",
+      "default": "/contact"
+    },
+    "email": {
+      "type": "email",
+      "default": "arkamvc@gmail.com"
+    },
+    "addressLine1": {
+      "type": "string",
+      "default": "Arkam Ventures, Indique Leela, 6th Floor, No.23,"
+    },
+    "addressLine2": {
+      "type": "string",
+      "default": "HAL 2nd Stage, Old Airport Road, Bangalore 560008"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "footer.social-link"
+    }
+  }
+}

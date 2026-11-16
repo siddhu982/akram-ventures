@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pitch_submissions",
+  "info": {
+    "singularName": "pitch-submission",
+    "pluralName": "pitch-submissions",
+    "displayName": "Pitch Submission"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "founderName": {
+      "type": "string",
+      "required": true,
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "maxLength": 254
+    },
+    "startupName": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "problemDescription": {
+      "type": "text"
+    },
+    "teamDescription": {
+      "type": "text"
+    },
+    "targetRoundSize": {
+      "type": "string"
+    },
+    "additionalInfo": {
+      "type": "text"
+    },
+    "pitchDeck": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["files"]
+    },
+    "websiteLink": {
+      "type": "string"
+    },
+    "linkedinLinks": {
+      "type": "json"
+    },
+    "targetMarket": {
+      "type": "text"
+    },
+    "sector": {
+      "type": "string"
+    },
+    "marketSize": {
+      "type": "text"
+    },
+    "customerValueProp": {
+      "type": "text"
+    },
+    "solution10x": {
+      "type": "text"
+    }
+  }
+}

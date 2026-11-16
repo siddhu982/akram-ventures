@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_thesis_showcase_sections",
+  "info": {
+    "displayName": "Showcase Section",
+    "description": "Theme showcase with tag, heading, description, feature image, and partner logos"
+  },
+  "options": {},
+  "attributes": {
+    "tag": {
+      "type": "string",
+      "required": true
+    },
+    "tagIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "heading": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "featureImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "thesis.slider-img"
+    },
+    "layoutDirection": {
+      "type": "enumeration",
+      "enum": ["image-right", "image-left"],
+      "default": "image-right"
+    }
+  }
+}

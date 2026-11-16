@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "founder_slides",
+  "info": {
+    "singularName": "founder-slide",
+    "pluralName": "founder-slides",
+    "displayName": "Founder slide"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "founderName": {
+      "type": "string"
+    },
+    "founderRole": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "founderImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "displayOrder": {
+      "type": "integer"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

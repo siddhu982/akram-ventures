@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_portfolio_hero_logos",
+  "info": {
+    "displayName": "Hero Logo",
+    "description": "Company logo displayed in the portfolio hero rotating constellation"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+packages:
+  - '.'
+
+patchedDependencies:
+  '@strapi/database@5.60.0': patches/@strapi__database@5.60.0.patch
+
+# Allow day-0 @strapi/* npm publishes while keeping pnpm 11 supply-chain defaults for other deps.
+minimumReleaseAgeExclude:
+  - '@strapi/*'
+
+allowBuilds:
+  '@swc/core': true
+  core-js-pure: true
+  esbuild: true
+  sharp: true

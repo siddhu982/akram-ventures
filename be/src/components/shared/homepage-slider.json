@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_homepage_sliders",
+  "info": {
+    "displayName": "homepageSlider",
+    "icon": "slideshow"
+  },
+  "options": {},
+  "attributes": {
+    "homepageBanner": {
+      "type": "string"
+    },
+    "imgSlider1": {
+      "type": "component",
+      "component": "shared.img-slider",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

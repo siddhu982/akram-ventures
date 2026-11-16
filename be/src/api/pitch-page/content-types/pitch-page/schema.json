@@ -1,0 +1,118 @@
+{
+  "kind": "singleType",
+  "collectionName": "pitch_pages",
+  "info": {
+    "singularName": "pitch-page",
+    "pluralName": "pitch-pages",
+    "displayName": "Pitch Page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string",
+      "default": "Pitch to us"
+    },
+    "title": {
+      "type": "text",
+      "default": "We are looking for limitless founders of tomorrow"
+    },
+    "section1Eyebrow": {
+      "type": "string"
+    },
+    "section1Title": {
+      "type": "string"
+    },
+    "section2Eyebrow": {
+      "type": "string"
+    },
+    "section2Title": {
+      "type": "string"
+    },
+    "nameLabel": {
+      "type": "string"
+    },
+    "emailLabel": {
+      "type": "string"
+    },
+    "problemLabel": {
+      "type": "string"
+    },
+    "teamLabel": {
+      "type": "string"
+    },
+    "roundSizeLabel": {
+      "type": "string"
+    },
+    "additionalInfoLabel": {
+      "type": "string"
+    },
+    "pitchDeckLabel": {
+      "type": "string"
+    },
+    "uploadPrompt": {
+      "type": "string"
+    },
+    "uploadHint": {
+      "type": "string"
+    },
+    "browseText": {
+      "type": "string"
+    },
+    "changeFileText": {
+      "type": "string"
+    },
+    "websiteLabel": {
+      "type": "string"
+    },
+    "linkedinLabel": {
+      "type": "string"
+    },
+    "linkedinHint": {
+      "type": "string"
+    },
+    "addMoreText": {
+      "type": "string"
+    },
+    "sectorLabel": {
+      "type": "string"
+    },
+    "sectorPlaceholder": {
+      "type": "string"
+    },
+    "sectorNoneLabel": {
+      "type": "string"
+    },
+    "marketLabel": {
+      "type": "string"
+    },
+    "customerLabel": {
+      "type": "string"
+    },
+    "solutionLabel": {
+      "type": "string"
+    },
+    "submitText": {
+      "type": "string"
+    },
+    "submittingText": {
+      "type": "string"
+    },
+    "successTitle": {
+      "type": "string"
+    },
+    "successMessage": {
+      "type": "text"
+    },
+    "backToFormText": {
+      "type": "string"
+    },
+    "sectorOptions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pitch.sector-option"
+    }
+  }
+}

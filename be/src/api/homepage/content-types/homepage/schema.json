@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Heading": {
+      "type": "string",
+      "required": true
+    },
+    "backgroundGrading": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Heading"
+    },
+    "addYourLayout": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.homepage-slider",
+        "shared.partners",
+        "homepage.blog-section",
+        "homepage.featured-stories",
+        "thesis.bottom-slider-heading",
+        "homepage.bottom-portfolio-slider"
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_insights_video_cards",
+  "info": {
+    "displayName": "Video Card",
+    "icon": "play",
+    "description": "A video card for the Insights grid — thumbnail, title, series name, date, description, read more link"
+  },
+  "options": {},
+  "attributes": {
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "videos"]
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "seriesName": {
+      "type": "string"
+    },
+    "publishedOn": {
+      "type": "date"
+    },
+    "description": {
+      "type": "text"
+    },
+    "readMoreUrl": {
+      "type": "string"
+    }
+  }
+}

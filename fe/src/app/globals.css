@@ -1,0 +1,4358 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-rubik: var(--font-rubik);
+  /* 120rem = 1920px. Must be in rem like Tailwind's built-in sm–xl, otherwise 2xl: rules are emitted before lg: rules and lose to them. */
+  --breakpoint-2xl: 120rem;
+}
+
+html,
+body {
+  background-color: #ffffff !important;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* "hidden" on both html and body turned each into its own vertical scroll container (two scrollbars);
+     "clip" hides sideways overflow without creating a scroller. */
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* Top Bar Layout: Matches the 1410px centered content grid */
+.navbar-container {
+  height: 64px;
+}
+
+.navbar-menu {
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .navbar-container {
+    height: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar-container {
+    height: 90px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-menu {
+    gap: 24px;
+  }
+}
+
+/* 1920px Desktop screen: Exact Figma specs (120px height, 32px menu gap) */
+@media (min-width: 1920px) {
+  .navbar-container {
+    height: 120px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-menu {
+    gap: 32px;
+  }
+}
+
+/* Hero Section: Exact Figma spacing (top: 240px, bottom: 84px at 1920; 180px / 63px at 1440) */
+.hero-section {
+  padding-top: 110px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 640px) {
+  .hero-section {
+    padding-top: 130px;
+    padding-bottom: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    padding-top: clamp(140px, 12.5vw, 180px);
+    padding-bottom: clamp(50px, 4.375vw, 63px);
+  }
+}
+
+/* 1440px Laptop screen: 240 * 0.75 = 180px top, 84 * 0.75 = 63px bottom */
+@media (min-width: 1440px) {
+  .hero-section {
+    padding-top: clamp(180px, 12.5vw, 240px);
+    padding-bottom: clamp(63px, 4.375vw, 84px);
+  }
+}
+
+/* 1920px Desktop screen: 240px top, 84px bottom */
+@media (min-width: 1920px) {
+  .hero-section {
+    padding-top: 240px;
+    padding-bottom: 84px;
+  }
+}
+
+/* Background Layer 1: 4% Orange Tint (top 0, left 0, 1920x880 at 1920; 1440x660 at 1440) */
+.bg-tint-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 1920px;
+  height: 500px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+@media (min-width: 1024px) {
+  .bg-tint-layer {
+    height: clamp(550px, 45.8333vw, 660px);
+  }
+}
+
+/* 1440px Laptop screen: 1920 * 0.75 = 1440px width, 880 * 0.75 = 660px height */
+@media (min-width: 1440px) {
+  .bg-tint-layer {
+    width: clamp(1440px, 100vw, 1920px);
+    height: clamp(660px, 45.8333vw, 880px);
+    left: 0;
+    top: 0;
+  }
+}
+
+/* 1920px Desktop screen: 1920 width, 880 height, top 0, left 0, opacity 0.04 */
+@media (min-width: 1920px) {
+  .bg-tint-layer {
+    width: 1920px;
+    height: 880px;
+    top: 0;
+    left: calc((100% - 1920px) / 2);
+    opacity: 0.04;
+  }
+}
+
+/* Background Layer 2: Ambient Glow SVG (1920x1659 at 1920; 1440x1244.25 at 1440) */
+.bg-glow-container {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  width: 100%;
+  max-width: 1920px;
+  height: 900px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) {
+  .bg-glow-container {
+    width: 100%;
+    height: clamp(1000px, 86.4063vw, 1244.25px);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* 1440px Laptop screen: 1920 * 0.75 = 1440px width, 1659 * 0.75 = 1244.25px height */
+@media (min-width: 1440px) {
+  .bg-glow-container {
+    width: clamp(1440px, 100vw, 1920px);
+    height: clamp(1244.25px, 86.4063vw, 1659px);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* 1920px Desktop screen: 1920 width, 1659 height */
+@media (min-width: 1920px) {
+  .bg-glow-container {
+    width: 1920px;
+    height: 1659px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Smooth Marquee Scrolling for Partner Logos */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 60px,
+    black calc(100% - 60px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 60px,
+    black calc(100% - 60px),
+    transparent 100%
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+/* Featured Story Slider Pagination */
+.featured-story-bullet {
+  width: 6px;
+  height: 6px;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.featured-story-bullet-active {
+  width: 21px;
+  height: 6px;
+  background-color: #ee6723;
+  border-radius: 9999px;
+}
+
+@media (min-width: 1920px) {
+  .featured-story-bullet {
+    width: 8px;
+    height: 8px;
+  }
+  .featured-story-bullet-active {
+    width: 28px;
+    height: 8px;
+  }
+}
+
+/* Featured Story Section: Exact Figma specs:
+   1920px base: Top: 1389px, Left: 199px, Width: 1522px, Height: 578px, Radius: 18px, BG: #FFF5E4
+   1440px base (* 0.75): Top: 1041.75px, Left: 149.25px, Width: 1141.5px, Height: 433.5px, Radius: 13.5px, BG: #FFF5E4
+*/
+.featured-story-section {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  user-select: none;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .featured-story-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-story-section {
+    padding-top: 120px;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-section {
+    padding-top: 160px;
+    padding-bottom: 0;
+  }
+}
+
+.featured-story-container {
+  width: 100%;
+  max-width: 1141.5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 640px) {
+  .featured-story-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .featured-story-container {
+    max-width: 1141.5px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-container {
+    max-width: 1522px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.featured-story-card {
+  width: 100%;
+  background-color: #fff5e4;
+  border-radius: 13.5px;
+  height: auto;
+  min-height: 433.5px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .featured-story-card {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-story-card {
+    height: 433.5px;
+    padding: 42px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-card {
+    height: 578px;
+    border-radius: 18px;
+    padding: 56px;
+  }
+}
+
+/* Left Content / Matter Block (Image 0: 570 Hug x 381 Hug) */
+.featured-story-matter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .featured-story-matter {
+    width: 427.5px;
+    height: 100%;
+    max-height: 349.5px;
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-matter {
+    width: 570px;
+    height: 100%;
+    max-height: 466px;
+    gap: 16px;
+  }
+}
+
+/* Publisher Logo (Image 1: 81 x 40) */
+.featured-story-logo {
+  position: relative;
+  width: 60.75px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1920px) {
+  .featured-story-logo {
+    width: 81px;
+    height: 40px;
+  }
+}
+
+/* Story Heading (Image 2: 570 x 96 Hug) */
+.featured-story-heading {
+  width: 100%;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #1e1a1a;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+@media (min-width: 1024px) {
+  .featured-story-heading {
+    width: 427.5px;
+    font-size: 27px;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-heading {
+    width: 570px;
+    font-size: 36px;
+    line-height: 48px;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Story Description (Image 3: 570 x 165 Hug) */
+.featured-story-desc {
+  width: 100%;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: #57534e;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .featured-story-desc {
+    width: 427.5px;
+    font-size: 13.5px;
+    line-height: 24px;
+    -webkit-line-clamp: 4;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-desc {
+    width: 570px;
+    font-size: 18px;
+    line-height: 30px;
+    -webkit-line-clamp: 4;
+  }
+}
+
+/* Story Read More Link & SVG (Figma: 125 Hug x 32 at 1920, 93.75 x 24 at 1440) */
+.featured-story-readmore {
+  width: 93.75px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  color: #1e1a1a;
+  transition: color 0.2s ease;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.featured-story-readmore:hover {
+  color: #ee6723;
+}
+
+.read-more-svg {
+  width: 93.75px;
+  height: 24px;
+  display: block;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 1920px) {
+  .featured-story-readmore {
+    width: 125px;
+    height: 32px;
+  }
+  .read-more-svg {
+    width: 125px;
+    height: 32px;
+  }
+}
+
+/* Right Column Image Wrap (User: width: 580; height: 466; border-radius: 16px) */
+.featured-story-image-wrap {
+  width: 100%;
+  height: 240px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .featured-story-image-wrap {
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-story-image-wrap {
+    width: 435px;
+    height: 349.5px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .featured-story-image-wrap {
+    width: 580px;
+    height: 466px;
+    border-radius: 16px;
+  }
+}
+
+/* ==========================================================================
+   Thesis Sectors Grid Section (Group 48099457)
+   1920px: Width 1410px, Height 534px, Left 255px (centered mx-auto)
+   1440px: Width 1057.5px, Height 400.5px, Left 191.25px (* 0.75)
+   ========================================================================== */
+
+.sectors-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+@media (min-width: 640px) {
+  .sectors-section {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectors-section {
+    padding-top: 0;
+    padding-bottom: 90px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sectors-section {
+    padding-top: 0;
+    padding-bottom: 120px;
+  }
+}
+
+/* Home page mosaic: breathing room under the partner-logo strip (1920: 80px, 1440: 60px = x0.75) */
+.sectors-section.sectors-section-home {
+  padding-top: 40px;
+}
+
+@media (min-width: 640px) {
+  .sectors-section.sectors-section-home {
+    padding-top: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectors-section.sectors-section-home {
+    padding-top: 60px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sectors-section.sectors-section-home {
+    padding-top: 80px;
+  }
+}
+
+.sectors-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 640px) {
+  .sectors-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectors-container {
+    max-width: 1057.5px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sectors-container {
+    max-width: 1410px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Sectors Section Title:
+   1920px: Width 679px, Height 57px, Margin-bottom 51px, Font 48px, Line-height 57px, Color #1E1A1A
+   1440px: Width 509.25px, Height 42.75px, Margin-bottom 38.25px, Font 36px, Line-height 42.75px
+*/
+.sectors-title {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 300;
+  color: #1e1a1a;
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+  margin-bottom: 24px;
+}
+
+.sectors-title-highlight {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 500;
+  color: #1e1a1a;
+}
+
+@media (min-width: 640px) {
+  .sectors-title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectors-title {
+    width: 509.25px;
+    min-height: 42.75px;
+    font-size: 36px;
+    line-height: 42.75px;
+    margin-bottom: 38.25px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sectors-title {
+    width: 679px;
+    min-height: 57px;
+    font-size: 48px;
+    line-height: 57px;
+    margin-bottom: 51px;
+  }
+}
+
+/* Responsive Grid */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .sectors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectors-grid {
+    grid-template-columns: repeat(4, 247.5px);
+    grid-template-rows: repeat(2, 189px);
+    gap: 22.5px;
+    width: 1057.5px;
+    height: 400.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sectors-grid {
+    grid-template-columns: repeat(4, 330px);
+    grid-template-rows: repeat(2, 252px);
+    gap: 30px;
+    width: 1410px;
+    height: 534px;
+  }
+}
+
+/* Card 1: Financial Services (Col 1, Spans 2 Rows) */
+.sector-card-fintech {
+  grid-column: span 1;
+  border-radius: 12px;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .sector-card-fintech {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    width: 247.5px;
+    height: 400.5px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-fintech {
+    width: 330px;
+    height: 534px;
+    border-radius: 16px;
+  }
+}
+
+/* Card 2: Food & Agri (Col 2, Row 1) */
+.sector-card-food {
+  border-radius: 12px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .sector-card-food {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: 247.5px;
+    height: 189px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-food {
+    width: 330px;
+    height: 252px;
+    border-radius: 16px;
+  }
+}
+
+/* Card 3: Healthcare (Col 2, Row 2) */
+.sector-card-health {
+  border-radius: 12px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .sector-card-health {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 247.5px;
+    height: 189px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-health {
+    width: 330px;
+    height: 252px;
+    border-radius: 16px;
+  }
+}
+
+/* Card 4: Logistics (Col 3-4, Row 1, Spans 2 Columns) */
+.sector-card-logistics {
+  border-radius: 12px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .sector-card-logistics {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sector-card-logistics {
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
+    width: 517.5px;
+    height: 189px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-logistics {
+    width: 690px;
+    height: 252px;
+    border-radius: 16px;
+  }
+}
+
+/* Card 5: SaaS (Col 3, Row 2) */
+.sector-card-saas {
+  border-radius: 12px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .sector-card-saas {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    width: 247.5px;
+    height: 189px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-saas {
+    width: 330px;
+    height: 252px;
+    border-radius: 16px;
+  }
+}
+
+/* Card 6: Others / View more (Col 4, Row 2: 330x252, top: 76px, left: 141px for 48x48 icon) */
+.sector-card-viewmore {
+  border-radius: 12px;
+  height: 180px;
+  background-color: #fff5e4;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 40px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sector-card-viewmore:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(238, 103, 35, 0.15);
+}
+
+@media (min-width: 1024px) {
+  .sector-card-viewmore {
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+    width: 247.5px;
+    height: 189px;
+    border-radius: 12px;
+    padding-top: 57px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-viewmore {
+    width: 330px;
+    height: 252px;
+    border-radius: 16px;
+    padding-top: 76px;
+  }
+}
+
+/* Sector Card Typography (Figma: Rubik 500, Size 20px, Line-height 33px, #FFFFFF, Left 24px, Bottom 16px) */
+.sector-card-title {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  z-index: 2;
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .sector-card-title {
+    bottom: 12px;
+    left: 18px;
+    font-size: 15px;
+    line-height: 24.75px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-card-title {
+    bottom: 16px;
+    left: 24px;
+    font-size: 20px;
+    line-height: 33px;
+  }
+}
+
+/* View More Button inside Others card (Figma: Button/View more: 122px x 24px, gap: 8px) */
+.sector-viewmore-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 18px;
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 500;
+  font-size: 13.5px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #1e1a1a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sector-viewmore-arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.sector-card-viewmore:hover .sector-viewmore-btn {
+  color: #ee6723;
+}
+
+.sector-card-viewmore:hover .sector-viewmore-arrow {
+  transform: rotate(0deg);
+}
+
+@media (min-width: 1024px) {
+  .sector-viewmore-btn {
+    gap: 6px;
+    height: 18px;
+    font-size: 13.5px;
+    line-height: 100%;
+  }
+  .sector-viewmore-arrow {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sector-viewmore-btn {
+    height: 24px;
+    gap: 8px;
+    font-size: 18px;
+    line-height: 100%;
+  }
+  .sector-viewmore-arrow {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Icons/More 48x48 icon (Figma: Width: 48px, Height: 48px, Top: 76px, Left: 141px) */
+.sector-viewmore-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.sector-card-viewmore:hover .sector-viewmore-icon {
+  transform: scale(1.08);
+}
+
+@media (min-width: 1920px) {
+  .sector-viewmore-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+}
+
+/* ==========================================================================
+   Arkam About Card (Frame 1171278004)
+   1920px: Width 1410px, Height 400px, Left 255px (centered), Radius 16px
+   1440px: Width 1057.5px, Height 300px, Left 191.25px (* 0.75)
+   ========================================================================== */
+
+/* ==========================================================================
+   Arkam About Section (Frame 1171278004 & Frame 1171278006)
+   1920px: Width 1410px, Height 400px, Top 3809px, Left 255px (Centered mx-auto)
+   1440px: Width 1057.5px, Height 300px (* 0.75 ratio)
+   ========================================================================== */
+
+.arkam-about-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 48px;
+  padding-bottom: 60px;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-section {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 75px;
+    padding-bottom: 90px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-section {
+    padding-top: 100px;
+    padding-bottom: 120px;
+  }
+}
+
+/* Outer Card (Frame 1171278004): 1410px x 400px at 1920, 1057.5px x 300px at 1440 */
+.arkam-about-card {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.03);
+}
+
+/* Foreground / Background Ambient Glow Overlay (Group 48099419) */
+.arkam-about-glow-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-card {
+    width: 1057.5px;
+    height: 300px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-card {
+    width: 1410px;
+    height: 400px;
+    border-radius: 16px;
+  }
+}
+
+/* Inner Frame (Frame 1171278006): 971px x 160px Hug, Gap 120px */
+.arkam-about-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 36px 24px;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-inner {
+    width: 728.25px;
+    height: 120px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 90px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-inner {
+    width: 971px;
+    height: 160px;
+    gap: 120px;
+  }
+}
+
+/* Logo (Group 48097958): 161.17px x 160px at 1920, 120.88px x 120px at 1440 */
+.arkam-about-logo {
+  width: 100px;
+  height: 99.27px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-logo {
+    width: 120.88px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-logo {
+    width: 161.17px;
+    height: 160px;
+  }
+}
+
+/* Text Frame: 690px x 128px Hug, Gap 24px */
+.arkam-about-text-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-text-wrap {
+    width: 517.5px;
+    height: 96px;
+    gap: 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-text-wrap {
+    width: 690px;
+    height: 128px;
+    gap: 24px;
+  }
+}
+
+/* Heading: 690px x 32px, Rubik 500 32px, Colon in Rubik 400, #1E1A1A at 70% opacity */
+.arkam-about-heading {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  color: #1e1a1a;
+  opacity: 0.7;
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.arkam-title-word {
+  font-weight: 500;
+}
+
+.arkam-title-colon {
+  font-weight: 400;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-heading {
+    width: 517.5px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-heading {
+    width: 690px;
+    height: 32px;
+    font-size: 32px;
+    line-height: 32px;
+  }
+}
+
+/* Description: 690px x 72px, Rubik 400 20px, Line-height 36px, Black #000000 at 70% opacity */
+.arkam-about-description {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  color: #000000;
+  opacity: 0.7;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.arkam-about-description p {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .arkam-about-description {
+    width: 517.5px;
+    height: 54px;
+    font-size: 15px;
+    line-height: 27px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .arkam-about-description {
+    width: 690px;
+    height: 72px;
+    font-size: 20px;
+    line-height: 36px;
+  }
+}
+
+/* ==========================================================================
+   Portfolio Companies Carousel (Component 62)
+   1920px: Width 1522px, Height 540px, Left 199px (Centered mx-auto)
+   1440px: Width 1141.5px, Height 405px (* 0.75 ratio)
+   ========================================================================== */
+
+.portfolio-carousel-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  padding-top: 60px;
+  padding-bottom: 80px;
+  outline: none;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-carousel-section {
+    padding-top: 120px;
+    padding-bottom: 100px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-section {
+    padding-top: 160px;
+    padding-bottom: 120px;
+  }
+}
+
+.portfolio-carousel-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 36px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-carousel-header {
+    margin-bottom: 42px;
+    max-width: 546px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-header {
+    margin-bottom: 56px;
+    max-width: 728px;
+  }
+}
+
+.portfolio-carousel-title {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 300;
+  color: #1e1a1a;
+  margin: 0 0 12px 0;
+  font-size: 30px;
+  line-height: 38px;
+}
+
+.portfolio-title-highlight {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 500;
+  color: #1e1a1a;
+}
+
+@media (min-width: 640px) {
+  .portfolio-carousel-title {
+    font-size: 34px;
+    line-height: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-carousel-title {
+    font-size: 42px;
+    line-height: 42px;
+    margin-bottom: 18px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-title {
+    font-size: 56px;
+    line-height: 56px;
+    margin-bottom: 24px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+.portfolio-carousel-subtitle {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  color: rgba(30, 26, 26, 0.7);
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 22px;
+  max-width: 546px;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-carousel-subtitle {
+    font-size: 14px;
+    line-height: 24px;
+    max-width: none;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-subtitle {
+    font-size: 18px;
+    line-height: 32px;
+    max-width: none;
+  }
+}
+
+/* Component 62 Stage */
+.portfolio-carousel-stage {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 420px;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-carousel-stage {
+    width: 1141.5px;
+    height: 405px;
+    overflow: visible;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-stage {
+    width: 1522px;
+    height: 540px;
+    overflow: visible;
+  }
+}
+
+.portfolio-carousel-track {
+  width: 100%;
+  height: 350px;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-carousel-track {
+    height: 337.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-track {
+    height: 450px;
+  }
+}
+
+/* Base Portfolio Card */
+.portfolio-card {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+  transition:
+    left 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease,
+    box-shadow 0.45s ease;
+  transform: translateZ(0);
+  will-change: left, top, width, height;
+}
+
+.portfolio-card-logo-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.portfolio-card-description {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  color: #57534e;
+  text-align: center;
+  font-size: 13px;
+  line-height: 20px;
+  max-width: 270px;
+  padding-left: 12px;
+  padding-right: 12px;
+  /* collapsed + invisible on non-centre cards */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  pointer-events: none;
+  /* fast exit */
+  transition: opacity 0.2s ease, max-height 0.2s ease, margin-top 0.2s ease;
+}
+
+/* Centre card: expand and fade in with a slight delay */
+.portfolio-card-center .portfolio-card-description {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 36px;
+  pointer-events: auto;
+  transition: opacity 0.35s ease 0.12s, max-height 0.35s ease 0.12s, margin-top 0.35s ease 0.12s;
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-description {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 308px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .portfolio-card-center .portfolio-card-description {
+    margin-top: 48px;
+  }
+}
+
+/* -------------------------------------------------------------
+   Mobile Layout (<1024px): Smooth focus card with sliding offscreen
+   ------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .portfolio-card {
+    border-radius: 14px;
+  }
+
+  .portfolio-card-center {
+    width: clamp(280px, 85vw, 360px);
+    height: clamp(280px, 85vw, 360px);
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    z-index: 30;
+    opacity: 1;
+    box-shadow: 0px 16px 40px 15px rgba(35, 35, 35, 0.05);
+    padding: 24px 20px;
+  }
+
+  .portfolio-card-near-left {
+    width: 260px;
+    height: 260px;
+    left: 10%;
+    top: 40px;
+    transform: translateX(-100%);
+    z-index: 20;
+    opacity: 0.35;
+    pointer-events: none;
+    box-shadow: 0px 16px 40px 15px rgba(217, 207, 207, 0.16);
+  }
+
+  .portfolio-card-near-right {
+    width: 260px;
+    height: 260px;
+    left: 90%;
+    top: 40px;
+    transform: translateX(0%);
+    z-index: 20;
+    opacity: 0.35;
+    pointer-events: none;
+    box-shadow: 0px 16px 40px 15px rgba(217, 207, 207, 0.16);
+  }
+
+  .portfolio-card-far-left,
+  .portfolio-card-hidden-left {
+    width: 200px;
+    height: 200px;
+    left: -100px;
+    top: 60px;
+    transform: translateX(-100%);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .portfolio-card-far-right,
+  .portfolio-card-hidden-right {
+    width: 200px;
+    height: 200px;
+    left: 100%;
+    top: 60px;
+    transform: translateX(50px);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* -------------------------------------------------------------
+   1440px Desktop Layout (min-width: 1024px): 0.75x Exact Figma Ratio
+   ------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .portfolio-card {
+    border-radius: 12px;
+  }
+
+  /* Center Card (450 * 0.75 = 337.5px) */
+  .portfolio-card-center {
+    width: 337.5px;
+    height: 337.5px;
+    left: 402px;
+    top: 0px;
+    z-index: 30;
+    opacity: 1;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0px 18px 45px 22.5px rgba(35, 35, 35, 0.04);
+    padding-top: 74.25px;
+    padding-bottom: 74.25px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Near Adjacent Left Card (344 * 0.75 = 258px, Left: 240 * 0.75 = 180px, Top: 53 * 0.75 = 39.75px) */
+  .portfolio-card-near-left {
+    width: 258px;
+    height: 258px;
+    left: 180px;
+    top: 39.75px;
+    z-index: 20;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 18px 45px 22.5px rgba(217, 207, 207, 0.16);
+    padding: 20px;
+  }
+
+  /* Near Adjacent Right Card (344 * 0.75 = 258px, Left: 938 * 0.75 = 703.5px, Top: 39.75px) */
+  .portfolio-card-near-right {
+    width: 258px;
+    height: 258px;
+    left: 703.5px;
+    top: 39.75px;
+    z-index: 20;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 18px 45px 22.5px rgba(217, 207, 207, 0.16);
+    padding: 20px;
+  }
+
+  /* Far Adjacent Left Card (262 * 0.75 = 196.5px, Left: 56 * 0.75 = 42px, Top: 94 * 0.75 = 70.5px) */
+  .portfolio-card-far-left {
+    width: 196.5px;
+    height: 196.5px;
+    left: 42px;
+    top: 70.5px;
+    z-index: 10;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 18px 45px 22.5px rgba(217, 207, 207, 0.16);
+    padding: 16px;
+  }
+
+  /* Far Adjacent Right Card (262 * 0.75 = 196.5px, Left: 1204 * 0.75 = 903px, Top: 70.5px) */
+  .portfolio-card-far-right {
+    width: 196.5px;
+    height: 196.5px;
+    left: 903px;
+    top: 70.5px;
+    z-index: 10;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 18px 45px 22.5px rgba(217, 207, 207, 0.16);
+    padding: 16px;
+  }
+
+  /* Offstage Hidden Cards */
+  .portfolio-card-hidden-left {
+    width: 150px;
+    height: 150px;
+    left: -150px;
+    top: 90px;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .portfolio-card-hidden-right {
+    width: 150px;
+    height: 150px;
+    left: 1150px;
+    top: 90px;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}
+
+/* -------------------------------------------------------------
+   1920px Full Desktop Layout (min-width: 1920px): Exact 1:1 Figma Specs
+   ------------------------------------------------------------- */
+@media (min-width: 1920px) {
+  .portfolio-card {
+    border-radius: 16px;
+  }
+
+  /* Center Card (Figma: Width 450, Height 450, Left 536, Top 0, Radius 16) */
+  .portfolio-card-center {
+    width: 450px;
+    height: 450px;
+    left: 536px;
+    top: 0px;
+    z-index: 30;
+    opacity: 1;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0px 24px 60px 30px rgba(35, 35, 35, 0.04);
+    padding-top: 99px;
+    padding-bottom: 99px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  /* Near Adjacent Left Card (Figma: Width 344, Height 344, Left 240, Top 53, Radius 16) */
+  .portfolio-card-near-left {
+    width: 344px;
+    height: 344px;
+    left: 240px;
+    top: 53px;
+    z-index: 20;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 24px 60px 30px rgba(217, 207, 207, 0.16);
+    padding: 24px;
+  }
+
+  /* Near Adjacent Right Card (Figma: Width 344, Height 344, Left 938, Top 53, Radius 16) */
+  .portfolio-card-near-right {
+    width: 344px;
+    height: 344px;
+    left: 938px;
+    top: 53px;
+    z-index: 20;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 24px 60px 30px rgba(217, 207, 207, 0.16);
+    padding: 24px;
+  }
+
+  /* Far Adjacent Left Card (Figma: Width 262, Height 262, Left 56, Top 94, Radius 16) */
+  .portfolio-card-far-left {
+    width: 262px;
+    height: 262px;
+    left: 56px;
+    top: 94px;
+    z-index: 10;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 24px 60px 30px rgba(217, 207, 207, 0.16);
+    padding: 20px;
+  }
+
+  /* Far Adjacent Right Card (Figma: Width 262, Height 262, Left 1204, Top 94, Radius 16) */
+  .portfolio-card-far-right {
+    width: 262px;
+    height: 262px;
+    left: 1204px;
+    top: 94px;
+    z-index: 10;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 24px 60px 30px rgba(217, 207, 207, 0.16);
+    padding: 20px;
+  }
+
+  /* Offstage Hidden Cards */
+  .portfolio-card-hidden-left {
+    width: 200px;
+    height: 200px;
+    left: -200px;
+    top: 120px;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .portfolio-card-hidden-right {
+    width: 200px;
+    height: 200px;
+    left: 1540px;
+    top: 120px;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}
+
+/* -------------------------------------------------------------
+   Navigation Controls (Circular Buttons Centered Under Active Card)
+   ------------------------------------------------------------- */
+.portfolio-carousel-nav {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  z-index: 40;
+}
+
+@media (min-width: 1920px) {
+  .portfolio-carousel-nav {
+    gap: 48px;
+  }
+}
+
+.portfolio-nav-btn {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.portfolio-nav-btn svg {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.portfolio-nav-btn:hover svg {
+  opacity: 1;
+}
+
+.portfolio-nav-btn:active {
+  transform: scale(0.96);
+}
+
+@media (min-width: 1920px) {
+  .portfolio-nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Subtle fade in for description */
+@keyframes portfolioFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: portfolioFadeIn 0.35s ease-out forwards;
+}
+
+/* ==========================================================================
+   Footer Component (Footer/Website)
+   1920px: Width 1920px, Height 449px
+   Background: Rectangle 6731 (#EE6723 at 8% opacity = rgba(238, 103, 35, 0.08))
+   Content Width: 1410px (Centered mx-auto)
+   ========================================================================== */
+
+.footer-section {
+  width: 100%;
+  position: relative;
+  background-color: rgba(238, 103, 35, 0.08);
+  padding-top: 48px;
+  padding-bottom: 48px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .footer-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    min-height: 449px;
+  }
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1410px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .footer-container {
+    max-width: 1057.5px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-container {
+    max-width: 1410px;
+  }
+}
+
+/* Top Row: Heading on Left, Pitch to Us Button on Right */
+.footer-top-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (min-width: 1024px) {
+  .footer-top-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+}
+
+/* Heading with Accent Burst */
+.footer-heading-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-heading {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  color: #1e1a1a;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  line-height: 44px;
+  letter-spacing: 0;
+}
+
+@media (min-width: 640px) {
+  .footer-heading {
+    font-size: 38px;
+    line-height: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-heading {
+    font-size: 42px;
+    line-height: 63px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-heading {
+    font-size: 56px;
+    line-height: 84px; /* 150% in Figma */
+  }
+}
+
+/* Underline under Limitless: 7px in Figma Image 1 (#FAA819) */
+.footer-limitless-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-limitless-underline {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #faa819;
+  border-radius: 9999px;
+}
+
+@media (min-width: 1024px) {
+  .footer-limitless-underline {
+    height: 5.25px;
+    bottom: 3px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-limitless-underline {
+    height: 7px;
+    bottom: 5px;
+  }
+}
+
+/* Vector Burst Accents: Snug to letter 's' with no gap */
+.footer-burst-wrap {
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  height: 22px;
+  margin-left: -2px;
+  transform: translateY(-4px);
+  flex-shrink: 0;
+}
+
+.footer-burst-wrap svg {
+  transform: translate(3px, -13px);
+}
+
+@media (min-width: 1024px) {
+  .footer-burst-wrap {
+    width: 27.76px;
+    height: 25.24px;
+    margin-left: -3px;
+    transform: translateY(-6px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-burst-wrap {
+    width: 37.02px;
+    height: 33.65px;
+    margin-left: -4px;
+    transform: translateY(-10px);
+  }
+}
+
+/* Pitch to us Button (Image 4 & Button.svg: 190px x 56px, Radius 8px) */
+.footer-pitch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 46px;
+  border-radius: 8px;
+  background: linear-gradient(96.19deg, #eeab41 0%, #df6e38 100%);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(223, 110, 56, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.footer-pitch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(223, 110, 56, 0.35);
+  opacity: 0.96;
+}
+
+.footer-pitch-btn:active {
+  transform: scale(0.98);
+}
+
+.footer-pitch-btn-text {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .footer-pitch-btn {
+    width: 142.5px;
+    height: 42px;
+  }
+  .footer-pitch-btn-text {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-pitch-btn {
+    width: 190px;
+    height: 56px;
+  }
+  .footer-pitch-btn-text {
+    font-size: 18px;
+  }
+}
+
+/* Divider Line across 1410px */
+.footer-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #eadccf;
+  margin-top: 36px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+  .footer-divider {
+    margin-top: 48px;
+    margin-bottom: 28px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-divider {
+    margin-top: 60px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Bottom Row: Frame 1171277891 (1410px x 100px Hug, Gap 24px) */
+.footer-bottom-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .footer-bottom-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+/* Left Contact Column: 1222px Fill, Gap 16px */
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1222px;
+}
+
+/* Email link: mail (1).svg (24x24), gap 8px, Rubik 400 16px/28px, #1E1A1A 70% */
+.footer-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1e1a1a;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.footer-email-link:hover {
+  opacity: 1;
+  color: #ee6723;
+}
+
+.footer-mail-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Address: 2 lines with Bangalore 560008 on line 2, Rubik 400, #1E1A1A 70% */
+.footer-address {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1e1a1a;
+  opacity: 0.7;
+  margin: 0;
+  max-width: 440px;
+}
+
+@media (min-width: 1024px) {
+  .footer-email-link {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .footer-mail-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .footer-address {
+    font-size: 14px;
+    line-height: 24px;
+    max-width: 440px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-email-link {
+    font-size: 16px;
+    line-height: 28px;
+  }
+  .footer-mail-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .footer-address {
+    font-size: 16px;
+    line-height: 28px;
+    max-width: 500px;
+  }
+}
+
+/* Social icons: 44px x 44px, border 1px solid rgba(30, 26, 26, 0.1), gap 16px */
+.footer-social-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.footer-social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e1a1a;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .footer-social-icon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer-social-icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.footer-social-icon:hover {
+  color: #ee6723;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 4px 10px rgba(238, 103, 35, 0.2));
+}
+
+/* ==========================================================================
+   Portfolio Page — Hero Section (Frame 1171277879 & Component 56)
+   1920px: Heading Top 373px (offset +153px), Component 56 Top 220px
+   1440px: Heading offset +114.75px (* 0.75)
+   ========================================================================== */
+
+/* Group 270 (1).png: 1920×1173px full ambient glow background */
+.portfolio-page-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+.portfolio-hero-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  padding-top: 130px;
+  padding-bottom: 50px;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hero-section {
+    padding-top: 165px;
+    padding-bottom: 90px; /* 120px * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hero-section {
+    padding-top: 220px; /* Aligns Component 56 at Top: 220px */
+    padding-bottom: 120px; /* Exact 120px gap between Component 56 and Cards Frame */
+  }
+}
+
+.portfolio-hero-container {
+  width: 100%;
+  max-width: 1410px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hero-container {
+    max-width: 1057.5px;
+    padding-left: 0;
+    padding-right: 0;
+    flex-direction: row;
+    align-items: flex-start; /* Aligns top edges to calculate exact Y offsets */
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hero-container {
+    max-width: 1410px;
+  }
+}
+
+/* Left: Frame 1171277879 (Width 683px, Height 228px, Top 373px -> Offset +153px from Top 220px) */
+.portfolio-hero-left {
+  width: 100%;
+  max-width: 683px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hero-left {
+    max-width: 512.25px;
+    margin-top: 114.75px; /* 153px * 0.75: Top 373px in Figma */
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hero-left {
+    max-width: 683px;
+    margin-top: 153px; /* 373px - 220px = exact 153px Y-difference */
+  }
+}
+
+.portfolio-hero-heading {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 300;
+  color: #1e1a1a;
+  margin: 0;
+  padding: 0;
+  font-size: 34px;
+  line-height: 44px;
+  letter-spacing: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .portfolio-hero-heading {
+    font-size: 42px;
+    line-height: 52px;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hero-heading {
+    font-size: 48px;
+    line-height: 57px;
+    gap: 0; /* 3 lines * 57px = 171px = 228 * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hero-heading {
+    font-size: 64px;
+    line-height: 76px;
+    gap: 0; /* 3 lines * 76px = exactly 228px total height (Frame 1171277879) */
+  }
+}
+
+.portfolio-hero-line {
+  display: block;
+}
+
+.portfolio-hero-highlight {
+  font-weight: 500;
+  color: #1e1a1a;
+  position: relative;
+  display: inline-block;
+}
+
+/* Vector 151: 194px width, 7px height, Color #FAA819, Center alignment */
+.portfolio-hero-underline {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  max-width: 194px;
+  height: 5.25px;
+  background-color: #faa819;
+  border-radius: 9999px;
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hero-underline {
+    height: 7px;
+    bottom: 2px;
+  }
+}
+
+/* Component 56: 458px x 458px, 4 frames of 220.02w x 220.02h */
+.portfolio-hero-component56 {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hero-component56 {
+    width: 343.5px;
+    height: 343.5px;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hero-component56 {
+    width: 458px;
+    height: 458px;
+    margin: 0;
+  }
+}
+
+/* Rotating Constellation Cluster */
+.portfolio-component56-rotator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: component56-orbit 34s linear infinite;
+  will-change: transform;
+  z-index: 2;
+}
+
+/* Pause on hover */
+.portfolio-hero-component56:hover .portfolio-component56-rotator,
+.portfolio-hero-component56:hover .portfolio-hero-logo-ideal {
+  animation-play-state: paused;
+}
+
+/* Base Frame: Omnidirectional shadow & subtle glass finish */
+.portfolio-component56-frame {
+  position: absolute;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 0 24px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(238, 103, 35, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Hover: Elegant uniform scale & warm amber glow */
+.portfolio-component56-frame:hover {
+  transform: scale(1.045);
+  border-color: rgba(238, 103, 35, 0.3);
+  box-shadow:
+    0 0 32px rgba(0, 0, 0, 0.08),
+    0 0 20px rgba(238, 103, 35, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  z-index: 25;
+}
+
+/* Mobile placement (<1024px) */
+.portfolio-component56-frame.frame-square-top-left {
+  top: 6.27px;
+  left: 6.27px;
+  width: 141.2px;
+  height: 141.2px;
+  border-radius: 0; /* Sharp edges */
+}
+
+.portfolio-component56-frame.frame-circle-top-right {
+  top: 0;
+  right: 0;
+  width: 153.7px;
+  height: 153.7px;
+  border-radius: 9999px;
+}
+
+.portfolio-component56-frame.frame-circle-bottom-left {
+  bottom: 0;
+  left: 0;
+  width: 153.7px;
+  height: 153.7px;
+  border-radius: 9999px;
+}
+
+.portfolio-component56-frame.frame-square-bottom-right {
+  bottom: 6.27px;
+  right: 6.27px;
+  width: 141.2px;
+  height: 141.2px;
+  border-radius: 0; /* Sharp edges */
+}
+
+/* 1440px Desktop Placement (* 0.75 ratio) */
+@media (min-width: 1024px) {
+  .portfolio-component56-frame.frame-square-top-left {
+    top: 6.735px;
+    left: 6.735px;
+    width: 151.545px; /* 202.06 * 0.75 */
+    height: 151.545px;
+    border-radius: 0;
+  }
+
+  .portfolio-component56-frame.frame-circle-top-right {
+    top: 0;
+    right: 0;
+    width: 165.015px; /* 220.02 * 0.75 */
+    height: 165.015px;
+    border-radius: 9999px;
+  }
+
+  .portfolio-component56-frame.frame-circle-bottom-left {
+    bottom: 0;
+    left: 0;
+    width: 165.015px; /* 220.02 * 0.75 */
+    height: 165.015px;
+    border-radius: 9999px;
+  }
+
+  .portfolio-component56-frame.frame-square-bottom-right {
+    bottom: 6.735px;
+    right: 6.735px;
+    width: 151.545px; /* 202.06 * 0.75 */
+    height: 151.545px;
+    border-radius: 0;
+  }
+}
+
+/* 1920px Desktop Placement (Exact 1:1 Figma specs) */
+@media (min-width: 1920px) {
+  /* Squares: 202.06px x 202.06px, 8.98px gap with outer Component 56, sharp edges (radius 0) */
+  .portfolio-component56-frame.frame-square-top-left {
+    top: 8.98px;
+    left: 8.98px;
+    width: 202.06px;
+    height: 202.06px;
+    border-radius: 0; /* Exact sharp edges */
+  }
+
+  /* Circles: 220.02px x 220.02px, radius 9999px, 0 gap with outer Component 56 */
+  .portfolio-component56-frame.frame-circle-top-right {
+    top: 0;
+    right: 0;
+    width: 220.02px;
+    height: 220.02px;
+    border-radius: 9999px;
+  }
+
+  .portfolio-component56-frame.frame-circle-bottom-left {
+    bottom: 0;
+    left: 0;
+    width: 220.02px;
+    height: 220.02px;
+    border-radius: 9999px;
+  }
+
+  .portfolio-component56-frame.frame-square-bottom-right {
+    bottom: 8.98px;
+    right: 8.98px;
+    width: 202.06px;
+    height: 202.06px;
+    border-radius: 0; /* Exact sharp edges */
+  }
+}
+
+/* Logo Sizes inside Component 56 frames (Images 1, 2, 3, 4) */
+.portfolio-hero-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Jumbotail (Img 1: 127.97 x 37.04) */
+.logo-jumbotail-size {
+  width: 95.98px;
+  height: 27.78px;
+}
+@media (min-width: 1920px) {
+  .logo-jumbotail-size {
+    width: 127.97px;
+    height: 37.04px;
+  }
+}
+
+/* Krazy Bee (Img 2: 138.07 x 49.39) */
+.logo-krazybee-size {
+  width: 103.55px;
+  height: 37.04px;
+}
+@media (min-width: 1920px) {
+  .logo-krazybee-size {
+    width: 138.07px;
+    height: 49.39px;
+  }
+}
+
+/* smartstaff (Img 3: 118 x 48) */
+.logo-smartstaff-size {
+  width: 88.5px;
+  height: 36px;
+}
+@media (min-width: 1920px) {
+  .logo-smartstaff-size {
+    width: 118px;
+    height: 48px;
+  }
+}
+
+/* SpotDraft (Img 4: 142.56 x 38.17) */
+.logo-spotdraft-size {
+  width: 106.92px;
+  height: 28.63px;
+}
+@media (min-width: 1920px) {
+  .logo-spotdraft-size {
+    width: 142.56px;
+    height: 38.17px;
+  }
+}
+
+/* Counter-rotating Logo Container: Keeps logos 100% ideal (level & upright) */
+.portfolio-hero-logo-ideal {
+  animation: component56-counter-rotate 34s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Continuous Orbital Keyframes */
+@keyframes component56-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes component56-counter-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-component56-rotator,
+  .portfolio-hero-logo-ideal {
+    animation: none !important;
+  }
+}
+
+/* Frame 1171278031: Team page ambient background glow
+   Figma specs: W: 2200px, H: 3020px, Top: 278px, Left: -140px (centered on 1920px), Opacity: 10%, Layer Blur: 400
+   Spans from Top: 278px (or 208.5px) all the way to bottom: 0 to fully cover the entire page. */
+.team-page-bg {
+  position: absolute;
+  width: 1650px;    /* 2200 × 0.75 */
+  height: calc(100% - 208.5px);
+  min-height: 2265px;   /* 3020 × 0.75 */
+  top: 208.5px;     /* 278 × 0.75 */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  display: block;
+  flex-shrink: 0;
+  max-width: none;
+}
+
+@media (min-width: 1920px) {
+  .team-page-bg {
+    width: 2200px;
+    height: calc(100% - 278px);
+    min-height: 3020px;
+    top: 278px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes teamFadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.team-content-enter {
+  animation: teamFadeIn 0.35s ease-out;
+}
+
+/* Frame 1171278031: grid section blob — W:2200 H:3020 T:733 L:-140 at 1920px; opacity 10% + blur 400 baked in */
+.portfolio-grid-bg {
+  position: absolute;
+  width: 1650px;   /* 2200 × 0.75 */
+  height: 2265px;  /* 3020 × 0.75 */
+  top: 550px;      /* 733 × 0.75 */
+  left: -105px;    /* -140 × 0.75 */
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1920px) {
+  .portfolio-grid-bg {
+    width: 2200px;
+    height: 3020px;
+    top: 733px;
+    left: -140px;
+  }
+}
+
+/* ==========================================================================
+   Portfolio Page — Company Grid & Hover Cards (Brands Component)
+   1920px: 450px x 503px, Shadow: 0px 16px 64px 32px #E9CBBD at 24%
+   1440px: 337.5px x 377.25px (* 0.75 ratio)
+   ========================================================================== */
+
+.portfolio-grid-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  padding-bottom: 120px;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid-section {
+    padding-bottom: 140px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-grid-section {
+    padding-bottom: 160px;
+  }
+}
+
+.portfolio-grid-container {
+  width: 100%;
+  max-width: 1410px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid-container {
+    max-width: 1057.5px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-grid-container {
+    max-width: 1410px;
+  }
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 24px;
+  row-gap: 48px;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(337.5px, 450px));
+    column-gap: 24px;
+    row-gap: 60px;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 337.5px);
+    column-gap: 22.5px; /* 30px * 0.75 */
+    row-gap: 60px; /* 80px * 0.75 */
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 450px);
+    column-gap: 30px;
+    row-gap: 80px; /* Exact gap of 80px between rows as requested */
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Portfolio Cards: 3D Flip Animation
+   Ideal State: 450px x 408px (1920px) / 337.5px x 306px (1024px)
+   Hover State: 450px x 503px (1920px) / 337.5px x 377.25px (1024px)
+   -------------------------------------------------------------------------- */
+
+/* 3D Scene Wrapper: Locks grid cell at resting height to prevent any layout jumping */
+.portfolio-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  height: 408px;
+  perspective: 1400px;
+  -webkit-perspective: 1400px;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+/* Stationary hit cushion: covers full card area on hover down to action buttons */
+.portfolio-card-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-wrapper {
+    width: 337.5px;
+    height: 306px; /* 408px * 0.75 */
+  }
+
+  .portfolio-card-wrapper:hover::after,
+  .portfolio-card-wrapper.has-hovered::after {
+    height: 382px; /* 377.25px + 4px lift */
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-wrapper {
+    width: 450px;
+    height: 408px; /* Exact Figma Frame 1171278089 */
+  }
+
+  .portfolio-card-wrapper:hover::after,
+  .portfolio-card-wrapper.has-hovered::after {
+    height: 507px; /* 503px + 4px lift */
+  }
+}
+
+.portfolio-card-wrapper.has-hovered,
+.portfolio-card-wrapper:hover,
+.portfolio-card-wrapper:has(.portfolio-card-item:hover) {
+  z-index: 50;
+}
+
+/* 3D Flippable Card Element: Rotates in 3D while smoothly expanding height */
+.portfolio-card-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 450px;
+  height: 408px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-origin: center center;
+  transform: translateY(0) rotateY(0deg);
+  transition:
+    transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-item {
+    width: 337.5px;
+    height: 306px; /* 408px * 0.75 */
+  }
+
+  .portfolio-card-wrapper:hover .portfolio-card-item,
+  .portfolio-card-wrapper.has-hovered .portfolio-card-item {
+    height: 377.25px; /* 503px * 0.75 */
+    transform: translateY(-4px) rotateY(180deg);
+    z-index: 50;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-item {
+    width: 450px;
+    height: 408px; /* Exact Figma Ideal Card Height */
+  }
+
+  .portfolio-card-wrapper:hover .portfolio-card-item,
+  .portfolio-card-wrapper.has-hovered .portfolio-card-item {
+    height: 503px; /* Exact Figma Brands Hover Height */
+    transform: translateY(-4px) rotateY(180deg);
+    z-index: 50;
+  }
+}
+
+/* Front Face: Default State (Ideal Card: 450px x 408px) */
+.portfolio-card-front,
+.portfolio-card-default {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 408px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(30, 26, 26, 0.06);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg) translateZ(1px);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-front,
+  .portfolio-card-default {
+    height: 306px;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-front,
+  .portfolio-card-default {
+    height: 408px;
+    border-radius: 16px;
+  }
+}
+
+.portfolio-card-wrapper:hover .portfolio-card-front,
+.portfolio-card-wrapper.has-hovered .portfolio-card-front {
+  pointer-events: none;
+}
+
+/* Specular Light Sheen sweep on 3D flip */
+.portfolio-card-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateX(-100%);
+  transition:
+    transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease;
+  z-index: 25;
+}
+
+.portfolio-card-wrapper:hover .portfolio-card-back .portfolio-card-sheen,
+.portfolio-card-wrapper.has-hovered .portfolio-card-back .portfolio-card-sheen,
+.portfolio-card-item:hover .portfolio-card-back .portfolio-card-sheen,
+.portfolio-card-item.is-hovered .portfolio-card-back .portfolio-card-sheen {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+/* Ideal Card Photo: 450px x 320px in Figma (Crop / Object-Cover) */
+.portfolio-card-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background-color: #f5f1f1;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-photo-wrap {
+    height: 240px; /* 320px * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-photo-wrap {
+    height: 320px;
+  }
+}
+
+.portfolio-card-photo-wrap img {
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.portfolio-card-item:hover .portfolio-card-photo-wrap img,
+.portfolio-card-item.is-hovered .portfolio-card-photo-wrap img {
+  transform: scale(1.05);
+}
+
+.portfolio-card-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f1f1 0%, #ede8e8 100%);
+}
+
+/* Ideal Card Logo Bar: 88px height (408px - 320px), Left 32px, Top 16px */
+.portfolio-card-logo-bar {
+  width: 100%;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  padding-left: 32px; /* Exact Figma Image 3: Left 32px */
+  padding-right: 32px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-logo-bar {
+    height: 66px; /* 88px * 0.75 */
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-logo-bar {
+    height: 88px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Logo Sizing (Exact Figma Specifications):
+   - Jai Kisan: 181px x 56px resting, 185px x 56px hover
+   - Jar: 106px x 56px
+   - smallcase: 190.8px x 48px
+   - Default: fixed height 56px, width varies based on logo
+*/
+.portfolio-card-logo-img {
+  object-fit: contain;
+  object-position: left;
+  display: block;
+}
+
+/* Jai Kisan: 181px x 56px resting, 185px x 56px hover */
+.portfolio-card-logo-bar .portfolio-card-logo-img.logo-brand-jaikisan {
+  width: 181px;
+  height: 56px;
+}
+.portfolio-hover-logo-wrap .portfolio-card-logo-img.logo-brand-jaikisan {
+  width: 185px;
+  height: 56px;
+}
+
+/* Jar: 106px x 56px */
+.portfolio-card-logo-img.logo-brand-jar {
+  width: 106px;
+  height: 56px;
+}
+
+/* smallcase: 190.8px x 48px */
+.portfolio-card-logo-img.logo-brand-smallcase {
+  width: 190.8px;
+  height: 48px;
+}
+
+/* Default / fallback for other logos (Height fixed to 56px, width varies based on logo) */
+.portfolio-card-logo-img.logo-brand-default,
+.portfolio-card-logo-bar img:not(.logo-brand-jaikisan):not(.logo-brand-jar):not(.logo-brand-smallcase),
+.portfolio-hover-logo-wrap img:not(.logo-brand-jaikisan):not(.logo-brand-jar):not(.logo-brand-smallcase) {
+  height: 56px;
+  width: auto;
+  max-width: 230px;
+  object-fit: contain;
+  object-position: left;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-logo-bar .portfolio-card-logo-img.logo-brand-jaikisan {
+    width: 135.75px;
+    height: 42px;
+  }
+  .portfolio-hover-logo-wrap .portfolio-card-logo-img.logo-brand-jaikisan {
+    width: 138.75px;
+    height: 42px;
+  }
+  .portfolio-card-logo-img.logo-brand-jar {
+    width: 79.5px;
+    height: 42px;
+  }
+  .portfolio-card-logo-img.logo-brand-smallcase {
+    width: 143.1px;
+    height: 36px;
+  }
+  .portfolio-card-logo-img.logo-brand-default,
+  .portfolio-card-logo-bar img:not(.logo-brand-jaikisan):not(.logo-brand-jar):not(.logo-brand-smallcase),
+  .portfolio-hover-logo-wrap img:not(.logo-brand-jaikisan):not(.logo-brand-jar):not(.logo-brand-smallcase) {
+    height: 42px;
+    max-width: 172.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-logo-bar .portfolio-card-logo-img.logo-brand-jaikisan {
+    width: 181px;
+    height: 56px;
+  }
+  .portfolio-hover-logo-wrap .portfolio-card-logo-img.logo-brand-jaikisan {
+    width: 185px;
+    height: 56px;
+  }
+  .portfolio-card-logo-img.logo-brand-jar {
+    width: 106px;
+    height: 56px;
+  }
+  .portfolio-card-logo-img.logo-brand-smallcase {
+    width: 190.8px;
+    height: 48px;
+  }
+  .portfolio-card-logo-img.logo-brand-default,
+  .portfolio-card-logo-bar img:not(.logo-brand-jaikisan):not(.logo-brand-jar):not(.logo-brand-smallcase),
+  .portfolio-hover-logo-wrap img:not(.logo-brand-jaikisan):not(.logo-brand-jar):not(.logo-brand-smallcase) {
+    height: 56px;
+    max-width: 230px;
+  }
+}
+
+/* Back Face: Hover Details View (Brands Hover: 450px x 503px in 3D space) */
+.portfolio-card-back,
+.portfolio-card-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 503px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 48px 40px; /* Exact Figma Padding: 48px 40px */
+  box-sizing: border-box;
+  box-shadow: 0px 16px 64px 32px rgba(233, 203, 189, 0.24);
+  border: 1px solid rgba(30, 26, 26, 0.06);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(180deg) translateZ(1px);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card-back,
+  .portfolio-card-hover-overlay {
+    height: 377.25px; /* 503px * 0.75 */
+    border-radius: 12px;
+    padding: 36px 30px; /* 48px * 0.75, 40px * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-card-back,
+  .portfolio-card-hover-overlay {
+    height: 503px;
+    border-radius: 16px;
+    padding: 48px 40px;
+  }
+}
+
+.portfolio-card-wrapper:hover .portfolio-card-back,
+.portfolio-card-wrapper:hover .portfolio-card-hover-overlay,
+.portfolio-card-wrapper.has-hovered .portfolio-card-back,
+.portfolio-card-wrapper.has-hovered .portfolio-card-hover-overlay,
+.portfolio-card-item:hover .portfolio-card-back,
+.portfolio-card-item:hover .portfolio-card-hover-overlay {
+  pointer-events: auto;
+}
+
+/* Subtle fluid slide-in for hover card contents so expansion feels unified and glitch-free */
+.portfolio-hover-description,
+.portfolio-hover-founders,
+.portfolio-hover-actions {
+  transform: translateY(6px);
+  transition:
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1) 0.04s,
+    opacity 0.3s ease;
+}
+
+.portfolio-card-wrapper:hover .portfolio-hover-description,
+.portfolio-card-wrapper:hover .portfolio-hover-founders,
+.portfolio-card-wrapper:hover .portfolio-hover-actions,
+.portfolio-card-wrapper.has-hovered .portfolio-hover-description,
+.portfolio-card-wrapper.has-hovered .portfolio-hover-founders,
+.portfolio-card-wrapper.has-hovered .portfolio-hover-actions {
+  transform: translateY(0);
+}
+
+/* Logo wrap inside hover card: Top 48px, Left 40px, Height 56px in Figma */
+.portfolio-hover-logo-wrap {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-logo-wrap {
+    height: 42px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-logo-wrap {
+    height: 56px;
+    margin-bottom: 24px;
+  }
+}
+
+/* Description: 370px max width, Rubik 400 18px / 32px, #1E1A1A at 70% opacity */
+.portfolio-hover-description {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  color: #1e1a1a;
+  opacity: 0.7;
+  font-size: 18px; /* Exact Figma: 18px */
+  line-height: 32px; /* Exact Figma: 32px */
+  margin: 0 0 24px 0;
+  max-width: 370px; /* Exact Figma: 370px */
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-description {
+    font-size: 13.5px;
+    line-height: 22px;
+    margin-bottom: 14px;
+    max-width: 277.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-description {
+    font-size: 18px;
+    line-height: 32px;
+    margin-bottom: 24px;
+    max-width: 370px;
+  }
+}
+
+/* Founders Group: Fixed 370px, Top 240px, Left 40px */
+.portfolio-hover-founders {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 370px;
+  margin-bottom: auto;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-founders {
+    max-width: 277.5px;
+    gap: 2px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-founders {
+    max-width: 370px;
+    gap: 4px;
+  }
+}
+
+.portfolio-founders-label {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 600;
+  color: #3d3a3a;
+  font-size: 16px; /* Exact Figma: 16px */
+  line-height: 26px; /* Exact Figma: 26px */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-founders-label {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-founders-label {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+.portfolio-founders-names {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  color: #1e1a1a;
+  opacity: 0.7;
+  font-size: 18px; /* Exact Figma: 18px */
+  line-height: 32px; /* Exact Figma: 32px */
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-founders-names {
+    font-size: 13.5px;
+    line-height: 22px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-founders-names {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+/* Bottom Action Row: LinkedIn, Facebook, Website link (Top 411px, Left 40px, Height 44px, Gap 12px) */
+.portfolio-hover-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Exact Figma: Gap 12px between in, f, and url button */
+  height: 44px;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-actions {
+    height: 33px;
+    gap: 9px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-actions {
+    height: 44px;
+    gap: 12px;
+  }
+}
+
+/* Social Icon Buttons (Facebook, LinkedIn: 44px x 44px) */
+.portfolio-hover-icon-btn {
+  width: 44px; /* Exact Figma: 44px */
+  height: 44px; /* Exact Figma: 44px */
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e1a1a;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.portfolio-hover-icon-btn svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-icon-btn {
+    width: 33px;
+    height: 33px;
+  }
+  .portfolio-hover-icon-btn svg {
+    width: 33px;
+    height: 33px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .portfolio-hover-icon-btn svg {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.portfolio-hover-icon-btn:hover {
+  color: #ee6723;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 4px 10px rgba(238, 103, 35, 0.2));
+}
+
+/* Website Link Pill Button (Exact Figma: Hug x Fixed 44px, Radius 37px, Border 1px #1E1A1A 10%) */
+.portfolio-hover-url-btn {
+  height: 44px; /* Exact Figma: Fixed 44px */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Exact Figma: Gap 8px */
+  padding: 8px 16px; /* Exact Figma: Top 8px, Bottom 8px, Left 16px, Right 16px */
+  border-radius: 37px; /* Exact Figma: Radius 37px */
+  border: 1px solid rgba(30, 26, 26, 0.1); /* Exact Figma: 1px #1E1A1A 10% */
+  text-decoration: none;
+  color: #1e1a1a;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-url-btn {
+    height: 33px;
+    padding: 6px 12px;
+    gap: 6px;
+    border-radius: 28px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-url-btn {
+    height: 44px;
+    padding: 8px 16px;
+    gap: 8px;
+    border-radius: 37px;
+  }
+}
+
+.portfolio-hover-url-btn:hover {
+  border-color: #ee6723;
+  color: #ee6723;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(238, 103, 35, 0.15);
+}
+
+/* URL Typography (Rubik 500 Medium, 16px / 26px, Opacity 70%) */
+.portfolio-hover-url-text {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 500; /* Exact Figma: Rubik 500 Medium */
+  font-size: 16px; /* Exact Figma: 16px */
+  line-height: 26px; /* Exact Figma: 26px */
+  color: currentColor;
+  opacity: 0.7; /* Exact Figma: 70% opacity */
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-url-text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-url-text {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+.portfolio-hover-url-btn:hover .portfolio-hover-url-text {
+  opacity: 1;
+}
+
+/* Arrow: Frame 1171277831.svg (19px x 18px, Opacity 70%) */
+.portfolio-hover-url-arrow {
+  width: 19px;
+  height: 18px;
+  flex-shrink: 0;
+  color: currentColor;
+  opacity: 0.7;
+  transform: rotate(0deg); /* Ideal state: natural 45 degree angle (↗) */
+  transform-origin: center center;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.25s ease,
+    color 0.25s ease;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hover-url-arrow {
+    width: 14px;
+    height: 13.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .portfolio-hover-url-arrow {
+    width: 19px;
+    height: 18px;
+  }
+}
+
+/* Arrow Animation: On hover, rotates to 0 degree (points horizontally right →) */
+.portfolio-hover-url-btn:hover .portfolio-hover-url-arrow {
+  opacity: 1;
+  transform: rotate(45deg); /* Rotates from 45° to 0° horizontal right (→) */
+}
+
+/* ==========================================================================
+   Thesis Page — Complete Styles Matching PDF & Exact Figma Specs
+   - Rectangle 6733: Width 1920px, Height 760px, Color #FCEEE8
+   - Group 270: Width 2547px, Height 1317.7px, Top -138px, Left -313px, Opacity 10%, Blur 394px
+   ========================================================================== */
+
+.thesis-page-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Hero band (Figma "Frame 1171278044": 1920 x 642 at top 120 - the nav sits on white above it).
+   The fill is the exported Figma frame (public/images/thesis/hero-bg.png).
+   1440px = x0.75 (top 90, height 481.5). */
+.thesis-hero-bg {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1920px;
+  height: 548px;
+  background-color: #fbe6e2;
+  background-image: url('/images/thesis/hero-bg.png'); /* exported Figma frame, 1920 x 642 */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .thesis-hero-bg {
+    top: 90px;
+    height: 481.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-hero-bg {
+    top: 120px;
+    height: 642px;
+  }
+}
+
+/* The old blurred glow image tinted the band; the exported frame replaces it. */
+.thesis-hero-glow {
+  display: none;
+}
+
+/* Hero Section Content */
+.thesis-hero-section {
+  position: relative;
+  width: 100%;
+  max-width: 1057.5px;
+  margin: 0 auto;
+  padding-top: 180px;
+  padding-bottom: 90px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .thesis-hero-section {
+    padding-top: 210px;
+    padding-bottom: 118.5px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-hero-section {
+    max-width: 1410px;
+    padding-top: 280px; /* Figma text frame: top 280px, 690px wide, 56px gap */
+    padding-bottom: 160px; /* section ends at 762px with the band */
+  }
+}
+
+.thesis-hero-heading {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 52px;
+  color: #1e1a1a;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+@media (min-width: 640px) {
+  .thesis-hero-heading {
+    font-size: 52px;
+    line-height: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .thesis-hero-heading {
+    font-size: 54px;
+    line-height: 63.75px;
+    max-width: 517.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-hero-heading {
+    font-size: 72px; /* Exact Figma: 72px */
+    line-height: 85px;
+    max-width: 690px;
+  }
+}
+
+.thesis-hero-highlight {
+  font-weight: 500;
+  color: #1e1a1a;
+  position: relative;
+  display: inline-block;
+}
+
+.thesis-hero-underline {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  width: 127.5px; /* Figma: short underline under the first word (170px at 1920) */
+  height: 6px;
+  background-color: #faa819; /* Exact Figma: #FAA819 */
+  border-radius: 9999px;
+}
+
+@media (min-width: 1920px) {
+  .thesis-hero-underline {
+    width: 170px;
+    height: 7px;
+    bottom: 6px;
+  }
+}
+
+.thesis-hero-subheading {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #1e1a1a;
+  opacity: 0.8;
+  max-width: 690px;
+  margin: 28px auto 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .thesis-hero-subheading {
+    font-size: 13.5px;
+    line-height: 24px;
+    max-width: 517.5px;
+    margin-top: 42px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-hero-subheading {
+    font-size: 18px; /* Exact Figma: 18px */
+    line-height: 32px; /* Exact Figma: 32px */
+    max-width: 690px;
+    margin-top: 56px;
+  }
+}
+
+/* India Intro Section: Stats Card (Left) + Vision Quote (Right) */
+.thesis-intro-section {
+  position: relative;
+  width: 100%;
+  max-width: 1057.5px;
+  margin: 0 auto;
+  padding: 60px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+@media (min-width: 1024px) {
+  .thesis-intro-section {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 97.5px;
+    padding: 120px 0 60px 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-intro-section {
+    max-width: 1410px;
+    gap: 130px;
+    padding: 160px 0 80px 0; /* card top 922, portraits top 1544 (Figma) */
+  }
+}
+
+.thesis-stats-wrap {
+  width: 100%;
+  max-width: 591px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .thesis-stats-wrap {
+    max-width: 443.25px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-stats-wrap {
+    max-width: 591px;
+  }
+}
+
+.thesis-intro-quote {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 40px;
+  color: #1e1a1a;
+  opacity: 0.7; /* Figma: 70% */
+  max-width: 690px;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .thesis-intro-quote {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .thesis-intro-quote {
+    font-size: 36px;
+    line-height: 48px;
+    max-width: 517.5px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-intro-quote {
+    font-size: 48px; /* Figma: Rubik Light 48px / 64px */
+    line-height: 64px;
+    max-width: 690px;
+  }
+}
+
+/* Portraits Mosaic Banner */
+.thesis-portraits-section {
+  position: relative;
+  width: 100%;
+  max-width: 1057.5px;
+  margin: 0 auto 100px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .thesis-portraits-section {
+    padding: 0;
+    margin-bottom: 120px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-portraits-section {
+    max-width: 1410px;
+    margin-bottom: 160px;
+  }
+}
+
+.thesis-portraits-wrap {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Two Major Themes Overview Section */
+.thesis-themes-section {
+  position: relative;
+  width: 100%;
+  max-width: 1057.5px;
+  margin: 0 auto 120px auto;
+  padding: 0 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .thesis-themes-section {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-themes-section {
+    max-width: 1410px;
+    margin-bottom: 160px;
+  }
+}
+
+.thesis-themes-intro-text {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: rgba(30, 26, 26, 0.7); /* Figma: #1E1A1A at 70% (the orange span stays full strength) */
+  max-width: 950.81px; /* Figma group 950.81 x 580: text 64 + gap 48 + cards 468 */
+  margin: 0 auto 48px auto;
+}
+
+@media (min-width: 1024px) {
+  .thesis-themes-intro-text {
+    max-width: 713px;
+    font-size: 13.5px;
+    line-height: 24px;
+    margin-bottom: 36px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-themes-intro-text {
+    max-width: 950.81px;
+    font-size: 18px; /* Exact Figma: 18px */
+    line-height: 32px;
+    margin-bottom: 48px;
+  }
+}
+
+.thesis-themes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .thesis-themes-grid {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.thesis-theme-card {
+  width: 100%;
+  max-width: 450px;
+  min-height: 468px; /* Exact Figma: 450px x 468px */
+  background-color: #fdf1ec;
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .thesis-theme-card {
+    max-width: 337.5px;
+    min-height: 351px;
+    padding: 48px 42px; /* 64 * 0.75 = 48, 56 * 0.75 = 42 */
+    gap: 15.75px; /* 21 * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-theme-card {
+    max-width: 450px;
+    min-height: 468px;
+    padding: 64px 56px; /* Exact Figma: 64px top, 56px left */
+    gap: 21px; /* Exact 21px gap between icon, title, description */
+  }
+}
+
+.thesis-theme-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(238, 103, 35, 0.12);
+}
+
+.thesis-theme-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .thesis-theme-icon {
+    width: 54px; /* 72 * 0.75 */
+    height: 54px;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-theme-icon {
+    width: 72px; /* Exact Figma: 72x72 */
+    height: 72px;
+    margin: 0;
+  }
+}
+
+.thesis-theme-title {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 600; /* Figma: Rubik SemiBold */
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(30, 26, 26, 0.7); /* Figma: #1E1A1A at 70% */
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .thesis-theme-title {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-theme-title {
+    font-size: 24px; /* Figma: 24px, line height 28px */
+    line-height: 28px;
+  }
+}
+
+.thesis-theme-desc {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  color: rgba(30, 26, 26, 0.7); /* Figma: #1E1A1A at 70% */
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .thesis-theme-desc {
+    font-size: 13.5px;
+    line-height: 24px;
+    width: 253.5px; /* 338 * 0.75 */
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-theme-desc {
+    font-size: 18px;
+    line-height: 32px;
+    width: 338px; /* Exact Figma: 338px fixed width, 6 lines = 192px tall */
+    max-width: 100%;
+  }
+}
+
+/* Feature Showcase Sections (Middle India & SaaS)
+   Showcase 1 (Middle India, image on right): group 1410x1044 at (255, 2975)
+   Showcase 2 (SaaS, image on left): group 1412x882 at (255, 4179) */
+.thesis-showcase-section {
+  position: relative;
+  width: 100%;
+  max-width: 1057.5px;
+  margin: 0 auto 120px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .thesis-showcase-section {
+    padding: 0;
+    margin-bottom: 120px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-showcase-section {
+    max-width: 1410px;
+    margin-bottom: 160px; /* 160px spacing before the next section */
+  }
+}
+
+.thesis-showcase-stage {
+  position: relative;
+  width: 100%;
+}
+
+.thesis-showcase-card {
+  position: relative;
+  width: 100%;
+  background-color: rgba(238, 103, 35, 0.08); /* Figma: #EE6723 at 8% */
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.thesis-showcase-text-frame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 564px;
+}
+
+.showcase-1 .thesis-showcase-text-frame {
+  gap: 30px;
+}
+@media (min-width: 1920px) {
+  .showcase-1 .thesis-showcase-text-frame {
+    gap: 40px; /* Exact Figma: 40px gap in Showcase 1 */
+  }
+}
+
+.showcase-2 .thesis-showcase-text-frame {
+  gap: 31.5px;
+}
+@media (min-width: 1920px) {
+  .showcase-2 .thesis-showcase-text-frame {
+    gap: 42px; /* Exact Figma: 42px gap in Showcase 2 */
+  }
+}
+
+.thesis-showcase-media {
+  position: relative;
+  width: 100%;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+/* Showcase 1: Pink block 1050x910 at x=255, photo 480x488 at x=1185, y=3170 (top +195) */
+@media (min-width: 1024px) {
+  .showcase-1 .thesis-showcase-card {
+    width: 787.5px; /* 1050 * 0.75 */
+    height: 682.5px; /* 910 * 0.75 */
+    padding: 111px 0 111px 117px; /* 148 * 0.75, 156 * 0.75 */
+  }
+
+  .showcase-1 .thesis-showcase-media {
+    position: absolute;
+    top: 146.25px; /* 195 * 0.75 */
+    right: 0;
+    width: 360px; /* 480 * 0.75 */
+    height: 366px; /* 488 * 0.75 */
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .showcase-1 .thesis-showcase-card {
+    width: 1050px;
+    height: 910px;
+    padding: 148px 0 148px 156px; /* 156px from block left, 148px top/bottom */
+  }
+
+  .showcase-1 .thesis-showcase-media {
+    top: 195px; /* 195px below block top */
+    right: 0; /* right edge at x=1665 */
+    width: 480px;
+    height: 488px;
+  }
+}
+
+/* Showcase 2: Pink block 1050x732 at x=617 (margin-left 362), photo 480x488 at x=255 (left: 0, top: 122) */
+@media (min-width: 1024px) {
+  .showcase-2 .thesis-showcase-card {
+    width: 787.5px; /* 1050 * 0.75 */
+    height: 549px; /* 732 * 0.75 */
+    margin-left: 271.5px; /* 362 * 0.75 */
+    padding: 111px 0 111px 247.5px; /* 148 * 0.75, 330 * 0.75 */
+  }
+
+  .showcase-2 .thesis-showcase-media {
+    position: absolute;
+    left: 0;
+    top: 91.5px; /* 122 * 0.75 */
+    width: 360px; /* 480 * 0.75 */
+    height: 366px; /* 488 * 0.75 */
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .showcase-2 .thesis-showcase-card {
+    width: 1050px;
+    height: 732px;
+    margin-left: 362px; /* 362px from container left */
+    padding: 148px 0 148px 330px; /* 330px from block left, 148px top/bottom */
+  }
+
+  .showcase-2 .thesis-showcase-media {
+    left: 0; /* left edge at x=255 */
+    top: 122px; /* 122px below block top */
+    width: 480px;
+    height: 488px;
+  }
+}
+
+/* Shared Tag Row: 56px tall, gap 24px, icon 56x56, label Rubik 600 24px/28px rgba(30,26,26,0.7) */
+.thesis-showcase-tag {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 40px;
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .thesis-showcase-tag {
+    height: 42px; /* 56 * 0.75 */
+    gap: 18px; /* 24 * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-showcase-tag {
+    height: 56px; /* Exact Figma: 56px tall */
+    gap: 24px; /* Exact Figma: 24px gap */
+  }
+}
+
+.thesis-showcase-tag-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .thesis-showcase-tag-icon {
+    width: 42px; /* 56 * 0.75 */
+    height: 42px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-showcase-tag-icon {
+    width: 56px; /* Exact Figma: 56x56 */
+    height: 56px;
+  }
+}
+
+.thesis-showcase-tag-label {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  color: rgba(30, 26, 26, 0.7); /* Figma: #1E1A1A at 70% */
+}
+
+@media (min-width: 1920px) {
+  .thesis-showcase-tag-label {
+    font-size: 24px; /* Exact Figma: Rubik 600 24px / 28px */
+    line-height: 28px;
+  }
+}
+
+/* Heading: Rubik 300, 40px / 50px, width 564px. 80% in showcase 1, 70% in showcase 2 */
+.thesis-showcase-title {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 300;
+  margin: 0;
+  font-size: 26px;
+  line-height: 34px;
+}
+
+.showcase-1 .thesis-showcase-title {
+  color: rgba(30, 26, 26, 0.8); /* Figma: #1E1A1A at 80% */
+}
+
+.showcase-2 .thesis-showcase-title {
+  color: rgba(30, 26, 26, 0.7); /* Figma: #1E1A1A at 70% */
+}
+
+@media (min-width: 1024px) {
+  .thesis-showcase-title {
+    font-size: 30px; /* 40 * 0.75 */
+    line-height: 37.5px; /* 50 * 0.75 */
+    width: 423px; /* 564 * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-showcase-title {
+    font-size: 40px; /* Exact Figma: 40px / 50px */
+    line-height: 50px;
+    width: 564px; /* Exact Figma: 564px width */
+  }
+}
+
+/* Description: Rubik 400, 18px / 32px, width 564px (562 in showcase 2). 80% in showcase 1, 70% in showcase 2 */
+.thesis-showcase-desc {
+  font-family: var(--font-rubik), Rubik, sans-serif;
+  font-weight: 400;
+  margin: 0;
+  font-size: 15px;
+  line-height: 26px;
+}
+
+.showcase-1 .thesis-showcase-desc {
+  color: rgba(30, 26, 26, 0.8); /* Figma: #1E1A1A at 80% */
+}
+
+.showcase-2 .thesis-showcase-desc {
+  color: rgba(30, 26, 26, 0.7); /* Figma: #1E1A1A at 70% */
+}
+
+@media (min-width: 1024px) {
+  .showcase-1 .thesis-showcase-desc {
+    font-size: 13.5px;
+    line-height: 24px;
+    width: 423px; /* 564 * 0.75 */
+  }
+
+  .showcase-2 .thesis-showcase-desc {
+    font-size: 13.5px;
+    line-height: 24px;
+    width: 421.5px; /* 562 * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .showcase-1 .thesis-showcase-desc {
+    font-size: 18px; /* Exact Figma: 18px / 32px */
+    line-height: 32px;
+    width: 564px; /* 4 lines = 128px tall */
+  }
+
+  .showcase-2 .thesis-showcase-desc {
+    font-size: 18px; /* Exact Figma: 18px / 32px */
+    line-height: 32px;
+    width: 562px; /* 3 lines = 96px tall */
+  }
+}
+
+/* Logos Strip under Showcase:
+   Row 1: 64px below block 1, gap 160px (120px at 1440), frame 1281x70 at (319, 3949)
+   Row 2: 64px below block 2, gap 148px (111px at 1440), frame hug 1068.2x86 at (426, 4975) */
+.thesis-showcase-logos {
+  position: relative;
+  width: 100%;
+  max-width: 1057.5px;
+  margin: 40px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .thesis-showcase-logos {
+    margin-top: 48px; /* 64 * 0.75 */
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-showcase-logos {
+    max-width: 1410px;
+    margin-top: 64px; /* Exact 64px below block */
+  }
+}
+
+.thesis-logo-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .thesis-logo-list.list-row-1 {
+    gap: 120px; /* 160 * 0.75 */
+    height: 52.5px; /* 70 * 0.75 */
+    flex-wrap: nowrap;
+  }
+
+  .thesis-logo-list.list-row-2 {
+    gap: 111px; /* 148 * 0.75 */
+    height: 64.5px; /* 86 * 0.75 */
+    padding: 6px 0;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thesis-logo-list.list-row-1 {
+    gap: 160px; /* Exact Figma: 160px gap */
+    height: 70px; /* Exact Figma: 70px frame */
+  }
+
+  .thesis-logo-list.list-row-2 {
+    gap: 148px; /* Exact Figma: 148px gap */
+    height: 86px; /* Exact Figma: 86px frame */
+    padding: 8px 0;
+  }
+}
+
+/* Individual Logo Sizes in Row 1:
+   Jumbotail 144x47, Jar 94x46, KreditBee 99x60, smartstaff 109.11x60.62, smallcase 188x48 */
+.logo-item-jumbotail { width: 108px; height: 35.25px; }
+.logo-item-jar { width: 70.5px; height: 34.5px; }
+.logo-item-kreditbee { width: 74.25px; height: 45px; }
+.logo-item-smartstaff { width: 81.83px; height: 45.47px; }
+.logo-item-smallcase { width: 141px; height: 36px; }
+
+@media (min-width: 1920px) {
+  .logo-item-jumbotail { width: 144px; height: 47px; }
+  .logo-item-jar { width: 94px; height: 46px; }
+  .logo-item-kreditbee { width: 99px; height: 60px; }
+  .logo-item-smartstaff { width: 109.11px; height: 60.62px; }
+  .logo-item-smallcase { width: 188px; height: 48px; }
+}
+
+/* Individual Logo Sizes in Row 2:
+   SpotDraft 183x48, Signzy 151.2x48, Cusmat 94x70, CustomerGlu 180x48 */
+.logo-item-spotdraft { width: 137.25px; height: 36px; }
+.logo-item-signzy { width: 113.4px; height: 36px; }
+.logo-item-cusmat { width: 70.5px; height: 52.5px; }
+.logo-item-customerglu { width: 135px; height: 36px; }
+
+@media (min-width: 1920px) {
+  .logo-item-spotdraft { width: 183px; height: 48px; }
+  .logo-item-signzy { width: 151.2px; height: 48px; }
+  .logo-item-cusmat { width: 94px; height: 70px; }
+  .logo-item-customerglu { width: 180px; height: 48px; }
+}
+
+

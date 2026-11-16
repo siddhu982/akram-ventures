@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_portfolio_partner_cards",
+  "info": {
+    "displayName": "partnerCards",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "actualCard": {
+      "type": "component",
+      "component": "portfolio.card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

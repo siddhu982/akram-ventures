@@ -1,0 +1,58 @@
+diff --git a/dist/entity-manager/regular-relations.js b/dist/entity-manager/regular-relations.js
+index 6d4d91d..f176bb8 100644
+--- a/dist/entity-manager/regular-relations.js
++++ b/dist/entity-manager/regular-relations.js
+@@ -149,6 +149,16 @@ const getDocumentSiblingIdsQuery = (tableName, id)=>{
+     }
+     const { joinTable } = attribute;
+     const { joinColumn, inverseJoinColumn, orderColumnName, inverseOrderColumnName } = joinTable;
++    // MySQL 5.7 does not support ROW_NUMBER(). Renumber ordered components in
++    // application code so publishing also works on older MySQL servers.
++    const renumberRows = async (partitionColumn, partitionValue, orderColumn) => {
++        const rows = await db.connection(joinTable.name).select('id').where(partitionColumn, partitionValue).orderBy(orderColumn, 'asc').orderBy('id', 'asc').transacting(trx);
++        for (const [index, row] of rows.entries()) {
++            await db.connection(joinTable.name).where('id', row.id).update({
++                [orderColumn]: index + 1
++            }).transacting(trx);
++        }
++    };
+     /**
+   UPDATE :joinTable: as a,
+   (
+@@ -168,15 +178,7 @@ const getDocumentSiblingIdsQuery = (tableName, id)=>{
+         switch(strapi.db.dialect.client){
+             case 'mysql':
+                 {
+-                    // Here it's MariaDB and MySQL 8
+-                    const select = selectRowsToOrder(joinTable.name);
+-                    await db.getConnection().raw(`UPDATE ?? as a, ( ${select.sql} ) AS b
+-            SET ?? = b.src_order
+-            WHERE b.id = a.id`, [
+-                        joinTable.name,
+-                        ...select.bindings,
+-                        orderColumnName
+-                    ]).transacting(trx);
++                    await renumberRows(joinColumn.name, id, orderColumnName);
+                     break;
+                 }
+             default:
+@@ -212,15 +214,10 @@ const getDocumentSiblingIdsQuery = (tableName, id)=>{
+         switch(strapi.db.dialect.client){
+             case 'mysql':
+                 {
+-                    // Here it's MariaDB and MySQL 8
+-                    const select = selectRowsToOrder(joinTable.name);
+-                    await db.getConnection().raw(`UPDATE ?? as a, ( ${select.sql} ) AS b
+-            SET ?? = b.inv_order
+-            WHERE b.id = a.id`, [
+-                        joinTable.name,
+-                        ...select.bindings,
+-                        inverseOrderColumnName
+-                    ]).transacting(trx);
++                    const partitions = await db.connection(joinTable.name).distinct(inverseJoinColumn.name).whereIn(inverseJoinColumn.name, inverseRelIds).transacting(trx);
++                    for (const partition of partitions) {
++                        await renumberRows(inverseJoinColumn.name, partition[inverseJoinColumn.name], inverseOrderColumnName);
++                    }
+                     break;
+                 }
+             default:

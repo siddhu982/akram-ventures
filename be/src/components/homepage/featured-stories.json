@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_homepage_featured_stories",
+  "info": {
+    "displayName": "featuredStories",
+    "icon": "manyToOne"
+  },
+  "options": {},
+  "attributes": {
+    "stories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::story.story"
+    }
+  },
+  "config": {}
+}

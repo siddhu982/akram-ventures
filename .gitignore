@@ -82,8 +82,11 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
+be/public/uploads/*
+!be/public/uploads/.gitkeep
 .tsbuildinfo
 .eslintcache
+be/database/*
 
 ############################
 # Node.js
@@ -129,3 +132,14 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+
+############################
+# Project-specific
+############################
+
+HANDOVER.md
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+scratch/*

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_pitch_sector_options",
+  "info": {
+    "displayName": "Sector Option",
+    "description": "One choice in the pitch form sector dropdown"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

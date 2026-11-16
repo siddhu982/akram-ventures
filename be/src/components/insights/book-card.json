@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_insights_book_cards",
+  "info": {
+    "displayName": "Book Card",
+    "icon": "book",
+    "description": "A book card for the Insights books section — cover, title, author, Amazon link, reviewer quote"
+  },
+  "options": {},
+  "attributes": {
+    "bookCover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "bookTitle": {
+      "type": "string"
+    },
+    "bookSubtitle": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "amazonUrl": {
+      "type": "string"
+    },
+    "reviews": {
+      "type": "component",
+      "repeatable": true,
+      "component": "insights.book-review"
+    }
+  }
+}

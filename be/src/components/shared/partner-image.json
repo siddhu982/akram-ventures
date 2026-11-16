@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_shared_partner_images",
+  "info": {
+    "displayName": "partnerImage"
+  },
+  "options": {},
+  "attributes": {
+    "LogoImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

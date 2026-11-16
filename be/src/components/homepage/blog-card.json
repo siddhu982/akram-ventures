@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_homepage_blog_cards",
+  "info": {
+    "displayName": "blogCard",
+    "icon": "folder"
+  },
+  "options": {},
+  "attributes": {
+    "mainHeading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "blogImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "readMore": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+  <title id="title">GreenGrid logo</title>
+  <desc id="desc">A green sustainable energy logo combining a leaf, sun and energy grid.</desc>
+  <defs>
+    <linearGradient id="grid-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#127B53"/>
+      <stop offset="1" stop-color="#58BE66"/>
+    </linearGradient>
+    <linearGradient id="leaf-gradient" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#B8E75A"/>
+      <stop offset="1" stop-color="#F4D85C"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(24 22)">
+    <rect x="0" y="0" width="136" height="136" rx="36" fill="url(#grid-gradient)"/>
+    <g fill="none" stroke="#E5F9D2" stroke-linecap="round" stroke-width="5" opacity=".92">
+      <path d="M23 83h90M28 105h80M45 65v58M69 54v69M93 62v61"/>
+    </g>
+    <path d="M30 51c22-25 52-27 76-18-5 28-26 51-55 51-10 0-18-3-25-8 1-9 2-19 4-29Z" fill="url(#leaf-gradient)"/>
+    <path d="M38 80c17-13 33-27 51-44" fill="none" stroke="#167653" stroke-linecap="round" stroke-width="5"/>
+    <circle cx="107" cy="30" r="10" fill="#F8E98F"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" letter-spacing="-1.7">
+    <text x="182" y="105" fill="#173B32" font-size="64" font-weight="700">Green</text>
+    <text x="376" y="105" fill="#218B59" font-size="64" font-weight="700">Grid</text>
+  </g>
+  <text x="186" y="135" fill="#5C756C" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="3">CLEAN ENERGY NETWORKS</text>
+</svg>

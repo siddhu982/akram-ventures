@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_teams_team_members",
+  "info": {
+    "displayName": "teamMembers",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "personImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

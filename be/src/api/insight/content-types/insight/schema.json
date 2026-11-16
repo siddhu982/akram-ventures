@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "insights",
+  "info": {
+    "singularName": "insight",
+    "pluralName": "insights",
+    "displayName": "Insight"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "layout": {
+      "type": "dynamiczone",
+      "components": [
+        "insights.book-card",
+        "insights.series-card",
+        "insights.video-card"
+      ]
+    }
+  }
+}

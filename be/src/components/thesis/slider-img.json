@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_thesis_slider_imgs",
+  "info": {
+    "displayName": "sliderImg"
+  },
+  "options": {},
+  "attributes": {
+    "img1": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imgTxt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

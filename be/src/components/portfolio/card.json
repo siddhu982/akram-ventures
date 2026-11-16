@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_portfolio_cards",
+  "info": {
+    "displayName": "card",
+    "icon": "chartBubble"
+  },
+  "options": {},
+  "attributes": {
+    "partnerImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "aboutPartner": {
+      "type": "text"
+    },
+    "founder": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

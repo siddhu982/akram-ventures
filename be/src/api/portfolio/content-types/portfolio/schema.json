@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "portfolios",
+  "info": {
+    "singularName": "portfolio",
+    "pluralName": "portfolios",
+    "displayName": "portfolio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Heading"
+    },
+    "heroHeading": {
+      "type": "text",
+      "default": "Investing in ideas that are transforming the world"
+    },
+    "heroLogos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "portfolio.hero-logo"
+    },
+    "containerForRemainingComponents": {
+      "type": "dynamiczone",
+      "components": [
+        "portfolio.partner-cards"
+      ]
+    }
+  }
+}

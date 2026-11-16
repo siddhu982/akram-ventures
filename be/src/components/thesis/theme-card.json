@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_thesis_theme_cards",
+  "info": {
+    "displayName": "Theme Card",
+    "description": "Investment theme card with icon, title, and description"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

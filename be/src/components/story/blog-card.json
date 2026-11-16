@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_story_blog_cards",
+  "info": {
+    "displayName": "BlogCard",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "cardImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "aboutCard": {
+      "type": "text"
+    },
+    "by": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "readMore": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

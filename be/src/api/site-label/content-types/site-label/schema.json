@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_labels",
+  "info": {
+    "singularName": "site-label",
+    "pluralName": "site-labels",
+    "displayName": "Site Labels",
+    "description": "Small UI texts used across the website"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "viewAllStoriesLabel": {
+      "type": "string"
+    },
+    "loadMoreLabel": {
+      "type": "string"
+    },
+    "foundersLabel": {
+      "type": "string"
+    },
+    "videoBylineSuffix": {
+      "type": "string"
+    },
+    "viewMoreLabel": {
+      "type": "string"
+    }
+  }
+}

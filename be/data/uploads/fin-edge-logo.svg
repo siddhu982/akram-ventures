@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+  <title id="title">FinEdge logo</title>
+  <desc id="desc">A blue and violet fintech logo with an ascending edge mark.</desc>
+  <defs>
+    <linearGradient id="fin-gradient" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2456D6"/>
+      <stop offset="1" stop-color="#8247E5"/>
+    </linearGradient>
+    <linearGradient id="fin-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7ED7FF"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(24 22)">
+    <rect x="0" y="0" width="136" height="136" rx="36" fill="url(#fin-gradient)"/>
+    <path d="M38 104V35h58v15H55v15h35v15H55v24H38Z" fill="#fff"/>
+    <path d="m65 103 22-21 14 12 24-29" fill="none" stroke="url(#fin-accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+    <path d="m110 65h15v15" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+    <circle cx="34" cy="119" r="5" fill="#87D8FF"/>
+    <circle cx="52" cy="119" r="5" fill="#C8B6FF"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" letter-spacing="-1.7">
+    <text x="182" y="105" fill="#172554" font-size="64" font-weight="700">Fin</text>
+    <text x="279" y="105" fill="#6542D8" font-size="64" font-weight="700">Edge</text>
+  </g>
+  <text x="186" y="135" fill="#667085" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="3.1">FINANCIAL INFRASTRUCTURE</text>
+</svg>

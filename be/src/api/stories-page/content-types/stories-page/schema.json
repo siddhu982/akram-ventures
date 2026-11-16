@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "stories_pages",
+  "info": {
+    "singularName": "stories-page",
+    "pluralName": "stories-pages",
+    "displayName": "Stories Page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Stories"
+    }
+  }
+}

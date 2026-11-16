@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "theses",
+  "info": {
+    "singularName": "thesis",
+    "pluralName": "theses",
+    "displayName": "thesis"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "heading"
+    },
+    "heroHeading": {
+      "type": "text",
+      "default": "Arkam Ventures is a thesis centric firm"
+    },
+    "heroSubheading": {
+      "type": "text",
+      "default": "We have a long-term, often multi-decade, point of view on certain market trends, inflection points, and solutions that we believe are truly disruptive and have the potential to create large, scalable, and profitable new market leaders."
+    },
+    "statsImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "indiaQuote": {
+      "type": "text",
+      "default": "We believe India is at a unique point in its history in terms of digital adoption, macro-economic, and geo-political winds of change."
+    },
+    "portraitsImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "themesIntroText": {
+      "type": "text",
+      "default": "Arkam invests across two major themes. These are generational themes with massive market drivers, innovation proof points, and clear opportunities for digital disruptors to reshape large industries or create new ones."
+    },
+    "themeCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "thesis.theme-card"
+    },
+    "showcases": {
+      "type": "component",
+      "repeatable": true,
+      "component": "thesis.showcase-section"
+    },
+    "bottomSlider": {
+      "type": "dynamiczone",
+      "components": [
+        "thesis.bottom-slider-heading"
+      ]
+    }
+  }
+}

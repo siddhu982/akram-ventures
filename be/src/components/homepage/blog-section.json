@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_homepage_blog_sections",
+  "info": {
+    "displayName": "blogSection",
+    "icon": "server"
+  },
+  "options": {},
+  "attributes": {
+    "blogSlider": {
+      "type": "string"
+    },
+    "blog": {
+      "type": "component",
+      "component": "homepage.blog-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
